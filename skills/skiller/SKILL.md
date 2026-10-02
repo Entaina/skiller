@@ -27,4 +27,5 @@ For a new repository, put the installable unit in `skills/<name>/SKILL.md`, with
 - Do not publish secrets, credentials, personal paths, temporary files, or unrelated material. Inspect the files before uploading them.
 - Preserve existing files: do not overwrite `README.md`, `AGENTS.md`, `SKILL.md`, or release configuration without comparing them and agreeing on the changes.
 - Show the destination, visibility, and planned files, and **ask for explicit confirmation before creating a remote repository, pushing, or changing remote settings**. Preparing local files is not the same as publishing them.
+- Before pushing a publication, check the repository's Actions settings and workflow token permissions as described in `references/publish.md`; the default `GITHUB_TOKEN` needs no custom secret. Report inaccessible settings as unverified, not as passing.
 - Do not claim that a GitHub Release means `skills.sh` installs a pinned version: verify installation and the release lifecycle separately.
