@@ -1,0 +1,21 @@
+# Publish an existing skill
+
+Consult the skills.sh CLI and release-please action in `references/official-sources.md` before writing installation instructions or configuring the workflow. Publication does not redesign `SKILL.md`.
+
+## Local preparation
+
+1. Ask for the skill path, GitHub owner and repository name, description, visibility, and default branch. Check `gh auth status` without exposing credentials. If the repository or infrastructure files already exist, inspect them before proposing changes.
+2. Check the skill against `references/validate.md`. By default, use **one repository per skill** and place it in `skills/<name>/`. When moving an existing skill, preserve all its resources and check relative paths. Do not migrate or overwrite anything without approval.
+3. Copy the versioned resources from `assets/repository/` to the local repository root; do not copy `assets/repository/` as a subdirectory or put it inside `skills/<name>/`. Do not overwrite an existing README, AGENTS.md, workflow, or release configuration: compare them and propose how to integrate. Adjust the workflow if the default branch is not `main`.
+4. Fill in the README with the name, a description based on the skill, the actual URL, the skill name, and the installation command. The template uses `{{...}}` placeholders; none may remain. The suggested command is `npx skills add <owner>/<repo> --skill <name>`, subject to checking the current CLI documentation. Explain project-local installation or `-g` according to the user's preference. Do not promise that the command pins a particular GitHub Release.
+5. The initial `0.0.0` manifest represents the state **before the first release**. Use a conventional first commit, for example `feat: publish the <name> skill`. The `simple` strategy versions the repository root; installable content remains in `skills/<name>/`. Check the official documentation to see which files release-please will add to its release PR.
+6. Inspect for secrets, personal paths, unrelated files, and unresolved placeholders. Show the file list, diff, visibility, proposed URL, and planned commands. Request explicit confirmation **before creating the remote repository, changing its settings, or pushing**. If permissions or confirmation are missing, leave local preparation ready and explain what remains.
+
+## Publication and verification
+
+7. Only after confirmation, create the repository with `gh` or connect an existing one, and push the agreed commits. Avoid initializing the remote with files that would complicate merging the local history. Do not modify unrelated repositories.
+8. Verify discovery from the remote with `npx skills add <owner>/<repo> --list` and try an installation in a temporary directory when possible. For private repositories, document the need for GitHub authentication; a push does not guarantee appearance in the public skills.sh directory.
+9. Check the GitHub Actions run and creation of the **release PR**. Review `GITHUB_TOKEN` permissions and GitHub's setting allowing Actions to create PRs. If checks must run on PRs created by release-please, explain the `GITHUB_TOKEN` limitation and propose another credential only with approval. Do not create a token on your own.
+10. Explain that a tag and GitHub Release appear **when the release PR is merged**, not on the initial push. When testing skiller itself, verify the first release and a later `fix:` in a test repository. Do not equate GitHub versioning with version selection by skills.sh.
+
+`AGENTS.md` and the README guide contributors on Conventional Commits; they **do not enforce** the convention. Non-conventional messages may not trigger the expected version bump. Do not install hooks or branch protections without authorization.
