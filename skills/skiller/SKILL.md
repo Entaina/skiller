@@ -11,10 +11,11 @@ Help take a skill from an idea to a distributable repository. Do not confuse the
 ## Choose a path based on the user's intent
 
 - **Design**: read [official sources](references/official-sources.md) and [design](references/design.md). If the user is still exploring, present a design before writing files.
+- **Doctor**: read [doctor](references/doctor.md). Unless the user explicitly narrows the scope, check only local tools, GitHub CLI authentication, and relevant repository or organization permissions. Report each local tool and each permission on its own line; do not run skill discovery, installation, validation, workflow inspection, or unrelated diagnostics.
 - **Build or improve**: read [official sources](references/official-sources.md), [build](references/build.md), and [validate](references/validate.md). If the requirements are unclear, start with design.
-- **Validate**: read [official sources](references/official-sources.md) and [validate](references/validate.md). Report issues before changing existing content.
-- **Publish**: read [official sources](references/official-sources.md), [validate](references/validate.md), and [publish](references/publish.md). Accept an existing skill; do not rebuild it by default.
-- **End-to-end**: design → build → validate → publish, with human review before publication.
+- **Validate**: read [official sources](references/official-sources.md) and [validate](references/validate.md). Inspect the skill's own structure and behavior; report issues before changing existing content. Use [doctor](references/doctor.md) separately if environment checks are needed.
+- **Publish**: read [official sources](references/official-sources.md), [doctor](references/doctor.md), [validate](references/validate.md), and [publish](references/publish.md). Check infrastructure with doctor and the skill itself with validate. Accept an existing skill; do not rebuild it by default.
+- **End-to-end**: design → build → validate → doctor → publish, with human review before publication.
 
 Consult the current official documentation listed in `references/official-sources.md` before designing, building, validating, or writing installation commands. If it is unavailable, say so and do not claim that unverified behavior has been checked.
 

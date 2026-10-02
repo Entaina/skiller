@@ -1,0 +1,16 @@
+Skiller doctor / {{scope}}
+
+Local tools
+<for tools>
+{{tool}} — {{result}} {{status}}
+</for>
+
+GitHub CLI authentication
+{{authentication-check}} — {{result}} {{status}}
+
+Repository / organization permissions
+<for permissions>
+{{permission}} — {{result}} {{status}}
+</for>
+
+Result: {{ok_count}} OK / {{fail_count}} FAIL / {{unverified_count}} unverified
