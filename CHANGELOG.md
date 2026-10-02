@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/Entaina/skiller/compare/v0.1.0...v0.2.0) (2026-10-02)
+
+
+### Features
+
+* add infrastructure doctor checks ([f4e7168](https://github.com/Entaina/skiller/commit/f4e71686c76f8b1e50ee546a2b5b184f59ab47b5))
+* check Actions permissions before publishing ([68a710a](https://github.com/Entaina/skiller/commit/68a710a86e457bdf4593aa3c640dc67de201e6b5))
+
 ## 0.1.0 (2026-10-02)
 
 
