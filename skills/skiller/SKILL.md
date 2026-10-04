@@ -19,9 +19,11 @@ Help take a skill from an idea to a distributable repository. Do not confuse the
 
 Consult the current official documentation listed in `references/official-sources.md` before designing, building, validating, or writing installation commands. If it is unavailable, say so and do not claim that unverified behavior has been checked.
 
-## Expected structure
+## Choose the destination
 
-For a new repository, put the installable unit in `skills/<name>/SKILL.md`, with `references/`, `scripts/`, and `assets/` only when needed. Keep `README.md`, `AGENTS.md`, and release-please files at the repository root. If an existing skill is at the root or another location, propose a migration and check relative references before moving anything.
+Read the [layout index](references/layouts/README.md) whenever locating or moving a skill source, then load the file for the selected layout. Layout references cover only supported repository placement: distribution repositories and project-local sources. Treat other existing placements as migration cases under build and validation rather than adding a layout for every exception. Use design, build, and validation guidance for the skill unit's internal structure.
+
+For project-local, global, or multi-harness use, read the [target index](references/targets/README.md), then load each requested target file and `multi-target.md` when applicable. Do not assume any discovery directory is universal. Ask when the target or scope is unclear, keep one canonical copy, and ensure the frontmatter `name` matches its skill directory.
 
 ## Boundaries and safety
 

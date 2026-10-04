@@ -13,6 +13,7 @@ Consult the relevant pages **in their current form**, rather than relying only o
 
 - [Official skills.sh CLI](https://github.com/vercel-labs/skills#readme): consult before using `npx skills init`, `npx skills add ... --list`, or writing an installation command in the README. Check that the layout and options are still supported.
 - [CLI reference](https://skills.sh/docs/cli): consult as a supplement; cross-check specific options against the project's README if they differ.
+- For project-local, global, or multi-harness use, follow `references/targets/README.md` and consult the current official documentation of every target before selecting a path or claiming automatic discovery. The Agent Skills specification does not define a universal container directory. Record stable target-specific guidance in `references/targets/<target-id>.md` only when a real task requires it, and keep that target's links in its own `## Official sources` section.
 
 `skills.sh` installs skills hosted on GitHub; there is no additional package registry to publish to. Appearance in its public directory depends on its discovery mechanisms, not on creating a GitHub Release.
 
