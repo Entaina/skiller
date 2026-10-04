@@ -1,6 +1,6 @@
 # skiller
 
-Define, author, validate, and publish Agent Skills.
+Define, author, extract, validate, and publish Agent Skills.
 
 ## Installation
 
