@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.0](https://github.com/Entaina/skiller/compare/v0.2.0...v0.3.0) (2026-10-04)
+
+
+### Features
+
+* **skiller:** add guarded skill evaluation suite ([90a2165](https://github.com/Entaina/skiller/commit/90a2165b6aae53dbafc9bd248c05fe83f73de6fd))
+* **skiller:** add local skill extraction workflow ([f7408a5](https://github.com/Entaina/skiller/commit/f7408a565f76e63ac917979a1e76f80b78979025))
+* **skiller:** support project-local and multi-target skills ([3c099a5](https://github.com/Entaina/skiller/commit/3c099a5384cb951cc3ee2449b754e32a55671c43))
+
 ## [0.2.0](https://github.com/Entaina/skiller/compare/v0.1.0...v0.2.0) (2026-10-02)
 
 
