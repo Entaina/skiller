@@ -1,0 +1,22 @@
+[
+  {"id":"p-define","query":"Help me define the scope and acceptance criteria for a skill that triages support requests.","should_trigger":true,"split":"train"},
+  {"id":"p-author","query":"Create a reusable Agent Skill for documenting our incident handoff process; I'll give you the runbook and examples.","should_trigger":true,"split":"train"},
+  {"id":"p-extract","query":"Can you extract the skill from my project's .agents/skills/ into its own installable repo without deleting the original?","should_trigger":true,"split":"train"},
+  {"id":"p-validate","query":"Check my SKILL.md frontmatter and references, then test whether this skill actually behaves as intended.","should_trigger":true,"split":"train"},
+  {"id":"p-doctor","query":"Run skiller doctor to see whether I can publish a skill from this environment.","should_trigger":true,"split":"train"},
+  {"id":"p-publish","query":"I have a finished Agent Skill. Help me prepare a public GitHub repository for publishing it through skills.sh.","should_trigger":true,"split":"train"},
+  {"id":"p-scope-es","query":"Quiero convertir nuestro procedimiento de soporte en una skill reutilizable; ayúdame a decidir cuándo se activa y cuándo no.","should_trigger":true,"split":"validation"},
+  {"id":"p-global","query":"Where should I place a new skill so my agent discovers it globally, and how can I verify that?","should_trigger":true,"split":"validation"},
+  {"id":"p-release","query":"How do I publish a skill with release-please without claiming that skills.sh installs a pinned release?","should_trigger":true,"split":"validation"},
+  {"id":"p-review","query":"Review this existing skill for portability and broken relative links before I share it.","should_trigger":true,"split":"validation"},
+  {"id":"n-use","query":"Use the installed explainer skill to explain this letter in plain language.","should_trigger":false,"split":"train"},
+  {"id":"n-git","query":"Write a conventional commit message for my app's CSS changes.","should_trigger":false,"split":"train"},
+  {"id":"n-github","query":"Create a GitHub repo for my React app and push the current branch.","should_trigger":false,"split":"train"},
+  {"id":"n-debug","query":"Debug this Python stack trace from a command line tool.","should_trigger":false,"split":"train"},
+  {"id":"n-install","query":"Install the existing pdf-processing skill and use it to extract tables from this document; don't create a new skill.","should_trigger":false,"split":"train"},
+  {"id":"n-doc","query":"Improve our incident runbook text for operators; I don't need a new skill.","should_trigger":false,"split":"train"},
+  {"id":"n-release","query":"Configure release-please for my TypeScript library; it has no Agent Skills.","should_trigger":false,"split":"validation"},
+  {"id":"n-agent","query":"Build a coding agent with tools that can answer customer emails; this is an app, not an Agent Skill.","should_trigger":false,"split":"validation"},
+  {"id":"n-search","query":"Find three existing Agent Skills that already handle SQL queries; don't author one.","should_trigger":false,"split":"validation"},
+  {"id":"n-ci","query":"Run my repository's existing unit tests and fix failures in its web app.","should_trigger":false,"split":"validation"}
+]

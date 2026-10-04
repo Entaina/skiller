@@ -22,6 +22,10 @@ Review a skill's contents before installing it. Private repositories require Git
 
 Doctor checks only local tools, GitHub CLI authentication, and relevant repository or organization permissions. It reports each tool and permission separately. See [doctor](skills/skiller/references/doctor.md); [validate](skills/skiller/references/validate.md) checks the skill itself.
 
+## Evaluations
+
+[`skills/skiller/evals/README.md`](skills/skiller/evals/README.md) explains the quality and activation evals. An offline CI check validates the fixtures and runner; optional Pi model runs are read-only and keep human judgments separate from mechanical checks. Doctor, extraction and remote-publication probes require a disposable sandbox and are never run automatically.
+
 ## Versions
 
 Changes are managed with [release-please](https://github.com/googleapis/release-please-action): conventional commits (`feat:`, `fix:`) feed a release PR with a changelog. Merging that PR creates a tag and GitHub Release. The installation command above installs the skill from the repository; it **does not pin a GitHub Release version**.
