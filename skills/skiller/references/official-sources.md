@@ -4,8 +4,8 @@ Consult the relevant pages **in their current form**, rather than relying only o
 
 ## Agent Skills format and quality
 
-- [Specification](https://agentskills.io/specification.md): `SKILL.md` requirements, frontmatter, names, references, and progressive disclosure. Consult when building, moving, or validating a skill.
-- [Best practices](https://agentskills.io/skill-creation/best-practices.md): **always consult before designing or reviewing a design**; ground the skill in real expertise, choose a coherent scope, and test it on real tasks.
+- [Specification](https://agentskills.io/specification.md): `SKILL.md` requirements, frontmatter, names, references, and progressive disclosure. Consult when defining, authoring, moving, or validating a skill.
+- [Best practices](https://agentskills.io/skill-creation/best-practices.md): **always consult before defining or reviewing a definition**; ground the skill in real expertise, choose a coherent scope, and test it on real tasks.
 - [Descriptions and activation](https://agentskills.io/skill-creation/optimizing-descriptions.md): consult when writing or debugging the `description` field.
 - [Evaluation](https://agentskills.io/skill-creation/evaluating-skills.md): consult when planning quality and activation tests.
 

@@ -1,6 +1,6 @@
 # skiller
 
-Design, build, validate, and publish Agent Skills.
+Define, author, validate, and publish Agent Skills.
 
 ## Installation
 
