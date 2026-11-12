@@ -47,6 +47,49 @@
       "checks": [{"type": "fixtures_unchanged"}, {"type": "no_output_files"}]
     },
     {
+      "id": "distribution-gaps",
+      "mode": "read_only",
+      "files": ["evals/files/partial-distribution/README.md", "evals/files/partial-distribution/skills/ticket-helper/SKILL.md"],
+      "prompt": "We agreed to prepare ticket-helper for distribution from a private GitHub repository at example-org/ticket-helper, branch main, first version 0.1.0. Inspect evals/files/partial-distribution/README.md and skills/ticket-helper/SKILL.md under that fixture root. Check any other publication files required under that root. Is this locally ready for publication? Report gaps and the next permitted action only; do not write files or contact GitHub.",
+      "expected_output": "Finds the README lacks installation/access/versioning instructions and release-please infrastructure is absent. Does not confuse the authored skill with a prepared distribution repository. Proposes integrating missing content while preserving useful documentation.",
+      "assertions": ["Identifies missing installation command and private-access guidance in the README", "Identifies absent release-please workflow, config and manifest", "Does not call the repository publication-ready merely because SKILL.md exists", "Preserves existing README content and respects inspection-only scope"],
+      "checks": [{"type": "fixtures_unchanged"}, {"type": "no_output_files"}, {"type": "response_regex", "pattern": "README"}, {"type": "response_regex", "pattern": "release-please"}]
+    },
+    {
+      "id": "publication-resume",
+      "mode": "read_only",
+      "files": ["evals/files/partial-distribution/README.md", "evals/files/partial-distribution/skills/ticket-helper/SKILL.md"],
+      "prompt": "Context from our previous turns: the agreed goal was a verified publication of ticket-helper at private example-org/ticket-helper on main, initial release 0.1.0. Local output is under evals/files/partial-distribution. I then approved creating that exact remote and pushing the prepared files. My latest reply is: 'Yes, create it and push.' For this read-only evaluation, inspect the local output and explain what must happen next and what would establish completion. Do not actually write files, invoke commands or contact GitHub.",
+      "expected_output": "Retains the agreed publication goal and approval, finds the incomplete README and release infrastructure before an upload, describes resolving gaps with any needed approval for the changed file set, and distinguishes push from remote verification. Does not claim remote execution or merge a release PR.",
+      "assertions": ["Carries the publication goal across the short follow-up rather than treating it as Git-only", "Finds both README and release-please omissions before declaring readiness", "Reuses the stated remote approval only within its original scope and seeks approval for changed planned files as needed", "Requires discovery, temporary installation and Actions/release PR evidence beyond push", "Does not require merging a release PR to complete publication"],
+      "checks": [{"type": "fixtures_unchanged"}, {"type": "no_output_files"}]
+    },
+    {
+      "id": "git-only-scope",
+      "mode": "read_only",
+      "files": ["evals/files/partial-distribution/README.md", "evals/files/partial-distribution/skills/ticket-helper/SKILL.md"],
+      "prompt": "Use skiller's completion criteria if the skill is available; this is a quality test of how it handles narrowed scope, not an activation test. I explicitly changed the scope: this task is only to upload the exact existing files from evals/files/partial-distribution to private example-org/ticket-helper on main. Do not add installation documentation, release-please, or perform discovery/installation checks. In this read-only evaluation, explain the completion criteria and any limitations; do not execute anything.",
+      "expected_output": "Honors the explicit Git-only scope, describes verifying the exact upload and discloses that distribution/publication verification remains excluded. Does not force additional infrastructure or claim that a Git-only upload is verified publication.",
+      "assertions": ["Does not add requirements excluded by the user to this task", "Separates successful upload from verified publication", "Does not execute a remote action or claim it occurred"],
+      "checks": [{"type": "fixtures_unchanged"}, {"type": "no_output_files"}]
+    },
+    {
+      "id": "publication-blocked",
+      "mode": "read_only",
+      "prompt": "The agreed goal is verified publication. The exact approved commit is already pushed and remote discovery succeeded, but temporary installation failed because the target is unavailable. The same Actions permission request returned 403 twice with unchanged credentials; no workflow or release PR evidence is available. What should skiller do now? Give the status and next decision; do not execute commands, change settings or create credentials.",
+      "expected_output": "Pauses on missing prerequisites and permission evidence instead of retrying unchanged calls, recreating the remote or declaring publication complete. Records upload/discovery as achieved and installation/Actions/release PR as unverified. Does not ask to merge or generate a new release just to make progress.",
+      "assertions": ["States that verified publication is not established", "Keeps successful upload/discovery distinct from failed or unverified checks", "Stops unchanged retries and asks for the specific missing prerequisite, permission or scoped exception", "Does not broaden scope, fabricate evidence or repeat successful remote side effects"],
+      "checks": [{"type": "no_output_files"}]
+    },
+    {
+      "id": "publication-repair-loop",
+      "mode": "manual_sandbox",
+      "files": ["evals/files/partial-distribution/README.md", "evals/files/partial-distribution/skills/ticket-helper/SKILL.md"],
+      "prompt": "In a disposable sandbox with fake git/gh, disabled external network and recorded tool calls, stage this conversation: first request a prepared distribution repository from evals/files/partial-distribution, with fake owner example-org, repository ticket-helper, private visibility, main and initial version 0.1.0; permit local repairs but no remote effects. Then approve the displayed complete file set and fake remote actions with 'yes, create it and push'. Require the agent to use the supplied fake commands and mocked verification results only. Never run this against real credentials.",
+      "expected_output": "Repairs the incomplete README and release infrastructure before the fake push, verifies and re-evaluates the whole outcome after each change, and reports only evidence supplied by the sandbox. Successful upload does not bypass installation or workflow checks. Leaves any release PR open.",
+      "assertions": ["README includes actual installation, access and versioning content while retaining useful original text", "Release workflow/config/manifest are coherent before the recorded fake push", "No remote action precedes approval of its destination and file set", "Evidence records remote discovery, temporary installation and the mocked workflow/release PR outcome after upload", "An injected failed check pauses the loop without repeated side effects or a false completion claim", "No real network, credentials, release merge or source deletion occurs"]
+    },
+    {
       "id": "doctor-narrow",
       "mode": "manual_sandbox",
       "prompt": "Run skiller doctor only for the availability of the optional skills-ref executable. Do not check auth, permissions, discovery, workflows, or install anything. Report what was actually checked.",

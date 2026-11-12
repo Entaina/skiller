@@ -8,7 +8,7 @@ Use this phase to materialize an approved definition as skill files. Consult the
 4. Write the approved description and valid frontmatter. Add `compatibility` only for real requirements. Avoid target-specific metadata or syntax unless the selected targets require it.
 5. Author the reusable procedure with explicit boundaries, tricky cases, and checks. Preserve the approved scope; do not add unrelated capabilities while writing instructions.
 6. Keep essential steps and warnings in `SKILL.md`. Add `references/` for details read on demand, `scripts/` for repeatable verifiable logic, and `assets/` for static resources only when needed. Use relative paths and document dependencies.
-7. Keep repository documentation, CI, and publication infrastructure outside the skill directory. Add them only when the requested layout or publication workflow needs them.
-8. Finish with `references/validate.md`. Do not publish merely because the files have been authored.
+7. Keep repository documentation, CI, and publication infrastructure outside the skill directory. When the agreed outcome includes a prepared distribution repository, use the local preparation and readiness methods in `references/publish.md` to complete its README and release infrastructure even if remote permission is pending. A skill-only or project-local request does not require that infrastructure.
+8. Use `references/validate.md`, then return to the control loop in `SKILL.md` and compare the whole result with the agreed outcome. Report validation limits and unresolved gaps. Do not equate authored files with a prepared distribution repository, or publish merely because the files have been authored.
 
 A valid minimal skill is `<skill-directory>/SKILL.md`, with no other files. `npx skills init` can provide a scaffold, but check its current behavior and place it at the destination selected through the applicable layout and target references. An empty scaffold is not a finished skill.

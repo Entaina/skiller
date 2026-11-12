@@ -13,8 +13,8 @@ import evals
 class EvalTests(unittest.TestCase):
     def test_cases_and_safe_fixtures(self):
         cases, queries = evals.load_cases()
-        self.assertEqual(len(cases), 8)
-        self.assertEqual(sum(c["mode"] == "read_only" for c in cases), 5)
+        self.assertEqual(len(cases), 13)
+        self.assertEqual(sum(c["mode"] == "read_only" for c in cases), 9)
         self.assertEqual(len(queries), 20)
         self.assertEqual(sum(q["should_trigger"] for q in queries), 10)
         self.assertEqual(sum(q["split"] == "validation" for q in queries), 8)
@@ -36,13 +36,35 @@ class EvalTests(unittest.TestCase):
             (directory / "input.md").unlink()
             self.assertNotEqual(before, evals.fixture_hashes(directory, ["input.md"]))
 
+    def test_publication_regressions_are_available_read_only(self):
+        cases, _ = evals.load_cases()
+        by_id = {case["id"]: case for case in cases}
+        for case_id in ("distribution-gaps", "publication-resume", "git-only-scope", "publication-blocked"):
+            with self.subTest(case_id=case_id):
+                self.assertEqual(by_id[case_id]["mode"], "read_only")
+                self.assertIn({"type": "no_output_files"}, by_id[case_id]["checks"])
+        self.assertEqual(by_id["publication-repair-loop"]["mode"], "manual_sandbox")
+
+    def test_partial_distribution_preserves_the_real_failure_conditions(self):
+        fixture = evals.EVALS / "files/partial-distribution"
+        readme = (fixture / "README.md").read_text(encoding="utf-8")
+        self.assertIn("## Development", readme)
+        self.assertNotIn("npx skills add", readme)
+        self.assertTrue((fixture / "skills/ticket-helper/SKILL.md").is_file())
+        for filename in (".github/workflows/release-please.yml", "release-please-config.json", ".release-please-manifest.json"):
+            with self.subTest(filename=filename):
+                self.assertFalse((fixture / filename).exists())
+
     def test_manual_cases_cannot_execute(self):
         cases, _ = evals.load_cases()
-        with tempfile.TemporaryDirectory() as tmp:
-            args = argparse.Namespace(ids=["publish-no-consent"], workspace=tmp)
-            with self.assertRaisesRegex(ValueError, "manual_sandbox"):
-                evals.quality(args, cases)
-            self.assertEqual(list(Path(tmp).iterdir()), [])
+        for case in cases:
+            if case["mode"] != "manual_sandbox":
+                continue
+            with self.subTest(case_id=case["id"]), tempfile.TemporaryDirectory() as tmp:
+                args = argparse.Namespace(ids=[case["id"]], workspace=tmp)
+                with self.assertRaisesRegex(ValueError, "manual_sandbox"):
+                    evals.quality(args, cases)
+                self.assertEqual(list(Path(tmp).iterdir()), [])
 
     def test_regex_grade_has_output_evidence(self):
         with tempfile.TemporaryDirectory() as tmp:

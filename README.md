@@ -2,6 +2,12 @@
 
 Define, author, extract, validate, and publish Agent Skills.
 
+## How it works
+
+Skiller agrees on the intended outcome, then repeats **observe → evaluate → act → verify** until that outcome has evidence or a blocker needs your decision. References provide methods for closing the next gap, not a sequence whose last command means completion.
+
+An authored skill, a locally prepared distribution repository, an uploaded commit, a verified publication and a GitHub Release are distinct outcomes. Distribution readiness includes installation documentation and release-please infrastructure. A successful push alone does not establish publication; merging a release PR requires separate authorization. Explicitly narrower requests, such as a local skill or Git-only upload, remain narrow.
+
 ## Installation
 
 Install this skill from GitHub with [skills.sh](https://skills.sh/):

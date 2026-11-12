@@ -8,7 +8,39 @@ compatibility: Publishing requires git, authenticated gh, GitHub access, and per
 
 Help take a skill from an idea to a distributable repository. Do not confuse the installable skill with the repository hosting it. Resolve relative paths from this skill's directory when reading references and templates.
 
-## Choose a path based on the user's intent
+## Agree on the outcome
+
+Identify the requested outcome and its completion criteria before acting. Use the conversation and inspected files; ask only for missing decisions. A short follow-up such as "create it and push" continues the agreed publication goal unless the user explicitly narrows it to a Git-only operation.
+
+Keep track of the objective, destination, relevant approvals, evidence, and remaining gaps in the conversation. Do not require a new tracking file. Reuse approvals only for the same scope and destination; changed files or remote effects may need renewed consent. Preparing local files never authorizes publication.
+
+## Control loop: observe → evaluate → act → verify
+
+Repeat this loop until the agreed outcome is demonstrated or progress requires the user:
+
+- **Observe:** inspect the actual state and available evidence. Load the relevant methods below. Do not assume earlier actions succeeded or repeat side effects that have already succeeded.
+- **Evaluate:** compare the whole state with the completion criteria, not just the last command. Mark each criterion satisfied, missing, or unverified; use not applicable only with a reason. If all required criteria are satisfied, stop. Otherwise choose the next gap that can be resolved within scope.
+- **Act:** perform the smallest permitted action that resolves that gap, using the applicable reference. For an inspection-only request, report the gap instead of modifying anything. Pause for missing decisions, authorization, or prerequisites; do not silently omit required work.
+- **Verify:** inspect the resulting artifact or command result, record concrete evidence, then evaluate the whole outcome again. An attempted command, existing file, or successful push is not proof of a complete publication.
+
+Do not repeat a failing action unchanged. If there is no progress, stop and explain the blocker and next decision. Bound waits for asynchronous checks; report pending work rather than polling forever. Do not broaden the goal, invent more improvements, recreate repositories, reinstall unnecessarily, or publish another version to keep the loop moving.
+
+On completion or pause, state the achieved outcome, evidence, and outstanding gaps. Distinguish local preparation, remote upload, verified publication, and an actual release. For doctor-only requests, retain the narrow report format in its reference instead of adding unrelated diagnostics.
+
+## Completion criteria by outcome
+
+Apply only the criteria for the agreed scope:
+
+- **Definition:** reviewable capability, boundaries, inputs, outputs, constraints, and acceptance examples; no files or destination choices required.
+- **Authored or extracted skill:** approved behavior materialized in the selected layout, required resources and references intact, validation results and behavioral-test limitations reported; extraction also preserves the original. A minimal local skill does not require distribution infrastructure.
+- **Distribution repository prepared:** the skill is ready locally, and the repository has a README with actual identity, installation command, access requirements and versioning explanation; contributor instructions; and the release-please workflow, configuration and manifest for the selected branch and intended first version. Inspect content and coherence, not just file existence. Follow the publication reference for strategy-specific files. Remote authorization may still be pending.
+- **Publication verified:** local distribution criteria plus the agreed remote/branch and push verified, remote discovery and temporary installation tested, and Actions/release-please results inspected. Verify the release PR and its version when releasable changes exist; an already-published repository with no releasable changes need not produce another PR. Missing or waived checks remain explicitly unverified, not passed. A push alone is only an upload.
+- **Release, when separately requested:** the authorized release PR is merged and the expected tag and GitHub Release are verified. Publication normally stops with the release PR open; never merge it merely to satisfy the loop.
+- **Validation or doctor report:** requested checks performed where possible and findings distinguished from blocked or unverified checks. A complete report does not mean the skill or infrastructure passed; do not repair or publish as an unsolicited next step.
+
+For end-to-end creation or extraction, cover all agreed local and publication outcomes, with human review before publication. For an explicitly Git-only request, verify that upload and disclose excluded publication work without adding it.
+
+## Load methods based on the next gap
 
 - **Define**: read [official sources](references/official-sources.md) and [define](references/define.md). Establish scope, activation, constraints, and acceptance criteria without choosing paths or writing files.
 - **Doctor**: read [doctor](references/doctor.md). Unless the user explicitly narrows the scope, check only local tools, GitHub CLI authentication, and relevant repository or organization permissions. Report each local tool and each permission on its own line; do not run skill discovery, installation, validation, workflow inspection, or unrelated diagnostics.
@@ -16,8 +48,6 @@ Help take a skill from an idea to a distributable repository. Do not confuse the
 - **Extract**: read [official sources](references/official-sources.md), [extract](references/extract.md), and [validate](references/validate.md). Copy a project-local or user-local skill into an independent distribution repository. Never remove or replace the original as part of extraction.
 - **Validate**: read [official sources](references/official-sources.md) and [validate](references/validate.md). Inspect the skill's own structure and behavior; report issues before changing existing content. Use [doctor](references/doctor.md) separately if environment checks are needed.
 - **Publish**: read [official sources](references/official-sources.md), [doctor](references/doctor.md), [validate](references/validate.md), and [publish](references/publish.md). Check infrastructure with doctor and the skill itself with validate. Accept an existing skill; do not re-author it by default.
-- **End-to-end creation**: define → author → validate → doctor → publish, with human review before publication.
-- **End-to-end extraction**: extract → validate → doctor → publish. Preserve the original unless the user later requests a separate cleanup operation.
 
 Consult the current official documentation listed in `references/official-sources.md` before defining, authoring, extracting, validating, or writing installation commands. If it is unavailable, say so and do not claim that unverified behavior has been checked.
 
