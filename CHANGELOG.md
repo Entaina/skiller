@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/Entaina/skiller/compare/v0.3.0...v0.4.0) (2026-11-12)
+
+
+### Features
+
+* **skiller:** drive work with an outcome control loop ([4872363](https://github.com/Entaina/skiller/commit/487236355a02b3b0ce7efbc024c7559b9e60fc6b))
+
 ## [0.3.0](https://github.com/Entaina/skiller/compare/v0.2.0...v0.3.0) (2026-10-04)
 
 
